@@ -81,12 +81,12 @@ function init() {
 
 
 function render() {
-
   board.forEach(function(mark, index) {
-
-    squares[index].textContent = mark;
-
+    squares[index].textContent = mark;    // writes an X or an O on board
   });
+
+  message.textContent = `Turn: ${turn}`;
+}
 
 
 
