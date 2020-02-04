@@ -1,100 +1,136 @@
-///////////////////// CONSTANTS /////////////////////////////////////
-
+///// CONSTANTS /////
 const winningConditions = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
 ];
 
-///////////////////// APP STATE (VARIABLES) /////////////////////////
-
+///// APP STATE (VARIABLES) /////
 let board;
 let turn;
 let win;
-let x_wins_count = 0
-let o_wins_count = 0
-let switch_turn_count = 0
-///////////////////// CACHED ELEMENT REFERENCES /////////////////////
+let started;
+let xScore = 0;
+let yScore = 0;
 
+///// CACHED ELEMENT REFERENCES /////
 const squares = Array.from(document.querySelectorAll("#board div"));
-const message = document.querySelector("h2");
+const turnChoice = document.getElementById("turnChoice");
+const turnUpdate = document.getElementById("turnUpdate");
+const scores = document.getElementById("scorekeeper");
+const turnButtons = document.getElementById("turnButtons");
 
-///////////////////// EVENT LISTENERS ///////////////////////////////
-
+///// EVENT LISTENERS /////
 window.onload = init;
-
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
-document.getElementById("switch").onclick = switch_turn;
-///////////////////// FUNCTIONS /////////////////////////////////////
+
+/**
+ * Runs to check which turn choice button was clicked, and acts accordingly with variables turn
+ * and started.
+ */
+function addEventListeners() {
+    turnButtons.addEventListener("click", function(event) {
+        let clicked = event.target;
+
+        if (clicked.id == "xButton" && !started) {
+            turn = "X";
+            started = true;
+            render();
+        }
+        if (clicked.id == "oButton" && !started) {
+            turn = "O";
+            started = true;
+            render();
+        }
+    });
+}
+
+///// FUNCTIONS /////
+
+/**
+ * Function that runs on page startup to assign variable values and to render the board.
+ */
 function init() {
-  board = ["", "", "", "", "", "", "", "", ""];
-  if (switch_turn_count == 0) {
-    turn = "X";
-  }
-  else if (switch_turn_count == 1) {
-    turn = "O"
-  }
-  win = null;
+    board = [
+        "", "", "",
+        "", "", "",
+        "", "", ""
+    ];
+    turn = "?";
+    win = null;
+    started = false;
 
-  render();
+    addEventListeners();
+    render();
 }
-function switch_turn() {
-  if (switch_turn_count == 0) {
-    switch_turn_count = 1
-  }
-  else if (switch_turn_count == 1) {
-    switch_turn_count = 0
-  }
-}
+
+/**
+ * Responsible for updating the board appearance by looping through the board array.
+ */
 function render() {
-  board.forEach(function(mark, index) {
-    squares[index].textContent = mark;
-  });
-  if (win === "X") {
-    x_wins_count = x_wins_count + 1
-  }
-  else if (win === "O") {
-    o_wins_count = o_wins_count + 1
-  }
-  x_wins.innerHTML = x_wins_count
-  o_wins.innerHTML = o_wins_count
-  message.textContent =
-    win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
-}
-
-function takeTurn(e) {
-  if (!win) {
-    let index = squares.findIndex(function(square) {
-      return square === e.target;
+    board.forEach(function(mark, index) {
+        squares[index].textContent = mark;
     });
 
-    if (board[index] === "") {
-      board[index] = turn;
-      turn = turn === "X" ? "O" : "X";
-      win = getWinner();
-      render();
-    }
-  }
+    scores.textContent = `X TOTAL WINS: ${xScore} | O TOTAL WINS: ${yScore}`;
+    xButton.textContent = "X";
+    oButton.textContent = "O";
+    turnUpdate.textContent = (win === "T" ? `TIE GAME` : (win ? `${win} WINS` : `TURN: ${turn}`));
 }
 
-function getWinner() {
-  let winner = null;
+/**
+ * Alternates between placing an X or an O on the physical board, depending on the turn state of the game.
+ * @param event The targeted HTML element
+ */
+function takeTurn(event) {
+    if (started) {
+        let index;
+        if (!win) {
+            index = squares.findIndex(function(square) {
+                return square === event.target;
+            });
+        }
 
-  winningConditions.forEach(function(condition, index) {
-    if (
-      board[condition[0]] &&
-      board[condition[0]] === board[condition[1]] &&
-      board[condition[1]] === board[condition[2]]
-    ) {
-      winner = board[condition[0]];
+        if (board[index] === "") {
+            board[index] = turn;
+            turn = turn === "X" ? "O" : "X";
+            win = getWinner();
+
+            render();
+        }
     }
-  });
+}
 
-  return winner ? winner : board.includes("") ? null : "T";
+/**
+ * Loops through the board array and checks against each of the programmed win conditions.
+ * Checks whether winner is defined, and then whether the board has been completely filled. Winner is then assigned
+ * a value accordingly.
+ * @return Either "X", "O", "T", or null, depending on the value of winner
+ */
+function getWinner() {
+    let winner = null;
+
+    winningConditions.forEach(function(condition, index) {
+        if (
+            board[condition[0]] &&
+            board[condition[0]] === board[condition[1]] &&
+            board[condition[1]] === board[condition[2]]
+        ) {
+            winner = board[condition[0]];
+            if (winner === "X") {
+                xScore++;
+            }
+            if (winner === "O") {
+                yScore++;
+            }
+        }
+    });
+
+    return winner ? winner : board.includes("") ? null : "T";
 }
