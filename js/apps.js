@@ -68,7 +68,7 @@ function render() {
     turnUpdate.textContent = (win === "T" ? `TIE GAME` : (win ? `${win} WINS` : `TURN: ${turn}`));
 }
 
- takeTurn(event) {
+function takeTurn(event) {
     if (started) {
         let index;
         if (!win) {
