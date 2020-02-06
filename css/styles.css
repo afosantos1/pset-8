@@ -1,18 +1,18 @@
 body {
     text-align: center;
-    font-family: "Courier New", monospace;
-    background-color: lavender;
+    font-family: "Arial Black", Gadget, sans-serif;
+    background-color: darkseagreen;
 }
 
 h1 {
     margin: 0 auto;
-    font-family: "Courier New", monospace;
-    font-size: 48px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 30px;
     margin: 2%;
 }
 
 h2 {
-    font-size: 36px;
+    font-size: 25px;
     font-weight: lighter;
     margin: 2%;
 }
@@ -22,28 +22,23 @@ hr {
 }
 
 p {
-    font-size: 20px;
+    font-size: 25px;
 }
 
-/*
-* The container is a flex-box, which is a powerful layout tool. It grows
-* dyanamically, and allows us to position our elements with precision.
-*/
-
 .container {
-    display: flex;                /* set our display property to use flex-box */
-    justify-content: center;      /* center container horizontally */
-    align-items: center;          /* center content vertically */
+    display: flex;                
+    justify-content: center;      
+    align-items: center;         
 }
 
 .column {
     height: 100%;
     width: 100%;
-    flex-direction: column; /* align children in columns instead of rows */
+    flex-direction: column; 
 }
 
 .wrap {
-    flex-wrap: wrap; /* tells container to drop down once it reaches max-width */
+    flex-wrap: wrap;
     height: 456px;
     width: 456px;
 }
@@ -66,30 +61,30 @@ p {
 }
 
 .square:hover {
-    background-color: white;
+    background-color: green;
     cursor: pointer;
 }
 
 #turnUpdate {
-    font-size: 25px;
+    font-size: 24px;
 }
 
 #xButton, #oButton {
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     border: 1px solid black;
     font-size: 20px;
 }
 
 #xButton:hover, #oButton:hover {
-    background-color: white;
+    background-color: green;
     cursor: pointer;
 }
 
 #reset-button {
-    background-color: white;
+    background-color: black;
     border: 1px solid black;
-    color: black;
+    color: white;
     font-size: 21px;
     line-height: 55px;
     margin: 1%;
@@ -98,7 +93,7 @@ p {
 }
 
 #reset-button:hover {
-    background-color: black;
+    background-color: green;
     color: white;
     cursor: pointer;
 }
