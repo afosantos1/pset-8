@@ -1,99 +1,105 @@
+* {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: lightgreen;
+  color: black;
+  cursor: pointer;
+}
+
 body {
-    text-align: center;
-    font-family: "Arial Black", Gadget, sans-serif;
-    background-color: darkseagreen;
+  text-align: center;
 }
 
 h1 {
-    margin: 0 auto;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 30px;
-    margin: 2%;
+  margin: 0 auto;
+  font-size: 48px;
+  margin: 2%;
+  margin-bottom: 0;
+  margin-top: 5px;
 }
 
 h2 {
-    font-size: 25px;
-    font-weight: lighter;
-    margin: 2%;
+  font-size: 33px;
+  font-weight: lighter;
+  margin: 1%;
 }
 
-hr {
-    border: 1px solid black;
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 38px;
+  font-weight: bold;
 }
 
-p {
-    font-size: 25px;
+h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 38px;
+  font-weight: bold;
 }
 
 .container {
-    display: flex;                
-    justify-content: center;      
-    align-items: center;         
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .column {
-    height: 100%;
-    width: 100%;
-    flex-direction: column; 
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
 }
 
 .wrap {
-    flex-wrap: wrap;
-    height: 456px;
-    width: 456px;
-}
-
-.barrier {
-    flex-wrap: wrap;
-    flex-direction: row;
-    height: 110px;
-    width: 425px;
-    align-items: center;
+  flex-wrap: wrap;
+  height: 456px;
+  width: 456px;
 }
 
 .square {
-    border: 1px solid rgba(0, 0, 0, 0.75);
-    font-size: 96px;
-    height: 150px;
-    line-height: 150px;
-    user-select: none;
-    width: 150px;
+  border: 1px solid black;
+  height: 150px;
+  user-select: none;
+  width: 150px;
+  font-size: 96px;
+  line-height: 150px;
 }
 
 .square:hover {
-    background-color: green;
-    cursor: pointer;
+  background-color: limegreen;
+  cursor: pointer;
 }
 
-#turnUpdate {
-    font-size: 24px;
-}
-
-#xButton, #oButton {
-    height: 35px;
-    width: 35px;
-    border: 1px solid black;
-    font-size: 20px;
-}
-
-#xButton:hover, #oButton:hover {
-    background-color: green;
-    cursor: pointer;
+.scorebox {
+  border: 1px solid black;
+  height: 90px;
+  user-select: none;
+  width: 225px;
 }
 
 #reset-button {
-    background-color: black;
-    border: 1px solid black;
-    color: white;
-    font-size: 21px;
-    line-height: 55px;
-    margin: 1%;
-    text-align: center;
-    width: 456px;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  font-size: 21px;
+  line-height: 55px;
+  margin: 1%;
+  text-align: center;
+  width: 456px;
+  margin-bottom: 0;
 }
 
 #reset-button:hover {
-    background-color: green;
-    color: white;
-    cursor: pointer;
+  background-color: limegreen;
+  color: black;
+  cursor: pointer;
+}
+
+#score-keeper {
+  padding-top: 15px;
+}
+
+#score-title {
+  background-color: black;
+  color: white;
+  font-size: 30px;
 }
