@@ -1,110 +1,108 @@
+///////////////////// CONSTANTS /////////////////////////////////////
 const winningConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
 ];
 
+///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
 let turn;
 let win;
-let started;
-let xScore = 0;
-let yScore = 0;
+let scoreX = 0;
+let scoreO = 0;
 
+///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
-const turnChoice = document.getElementById("turnChoice");
-const turnUpdate = document.getElementById("turnUpdate");
-const scores = document.getElementById("scorekeeper");
-const turnButtons = document.getElementById("turnButtons");
+const message = document.querySelector("h2");
+const scoreXMessage = document.querySelector("h3");
+const scoreOMessage = document.querySelector("h4");
 
+///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
 
-function addEventListeners() {
-    turnButtons.addEventListener("click", function(event) {
-        let clicked = event.target;
-
-        if (clicked.id == "xButton" && !started) {
-            turn = "X";
-            started = true;
-            render();
-        }
-        if (clicked.id == "oButton" && !started) {
-            turn = "O";
-            started = true;
-            render();
-        }
-    });
-}
-
+///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
-    board = [
-        "", "", "",
-        "", "", "",
-        "", "", ""
-    ];
-    turn = "?";
-    win = null;
-    started = false;
+  board = [
+    "", "", "",
+    "", "", "",
+    "", "", ""
+  ];
 
-    addEventListeners();
-    render();
+  do {
+    var initialPlayer = prompt("Enter X or O to declare the first player: ");
+    if (initialPlayer === null) {
+      turn = "X";
+      break;
+    } else if (initialPlayer === "X" || initialPlayer === "x") {
+      turn = "X";
+    } else if (initialPlayer === "O" || initialPlayer === "o") {
+      turn = "O";
+    } else {
+      //intentially blank
+    }
+  } while (initialPlayer !== "X" && initialPlayer !== "x" && initialPlayer !== "O" && initialPlayer !== "o");
+
+  win = null;
+
+  render();
 }
 
 function render() {
-    board.forEach(function(mark, index) {
-        squares[index].textContent = mark;
-    });
+  board.forEach(function(mark, index) {
+    squares[index].textContent = mark;
+  });
 
-    scores.textContent = `X TOTAL WINS: ${xScore} | O TOTAL WINS: ${yScore}`;
-    xButton.textContent = "X";
-    oButton.textContent = "O";
-    turnUpdate.textContent = (win === "T" ? `TIE GAME` : (win ? `${win} WINS` : `TURN: ${turn}`));
+  message.textContent =
+    win === "T" ? "It's a tie!"
+    : win ? `${win} wins!`
+    : `Turn: ${turn}`;
+  if (win === "X") {
+    scoreX++;
+    scoreXMessage.textContent = scoreX;
+  } else if (win === "O") {
+    scoreO++;
+    scoreOMessage.textContent = scoreO;
+  } else {
+    //if there is a tie, do not change score
+  }
 }
 
-function takeTurn(event) {
-    if (started) {
-        let index;
-        if (!win) {
-            index = squares.findIndex(function(square) {
-                return square === event.target;
-            });
-        }
+function takeTurn(e) {
+  if (!win) {
+    let index = squares.findIndex(function(square) {
+      return square === e.target;
+    });
 
-        if (board[index] === "") {
-            board[index] = turn;
-            turn = turn === "X" ? "O" : "X";
-            win = getWinner();
+    if (board[index] === "") {
+      board[index] = turn;
+      turn = turn === "X" ? "O" : "X";
+      win = getWinner();
 
-            render();
-        }
+      render();
     }
+  }
 }
 
 function getWinner() {
-    let winner = null;
+  let winner = null;
 
-    winningConditions.forEach(function(condition, index) {
-        if (
-            board[condition[0]] &&
-            board[condition[0]] === board[condition[1]] &&
-            board[condition[1]] === board[condition[2]]
-        ) {
-            winner = board[condition[0]];
-            if (winner === "X") {
-                xScore++;
-            }
-            if (winner === "O") {
-                yScore++;
-            }
-        }
-    });
+  winningConditions.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[0]] === board[condition[2]]
+    ){
+        winner = board[condition[0]];
+    }
+  });
 
-    return winner ? winner : board.includes("") ? null : "T";
+  return winner ? winner : board.includes("") ? null : "T";
 }
