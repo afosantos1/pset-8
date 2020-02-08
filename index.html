@@ -16,14 +16,23 @@
     <title>APCSP Tic-Tac-Toe</title>
   </head>
   <body>
-    <h1>tic | tac | toe</h1>
+    <h1>TIC | TAC | TOE</h1>
   <div id = "turnbttns">
     <button id = "xfirst_bttn">X First</button>
     <button id = "ofirst_bttn">O First</button>
   </div>
     <div class="container column">
       <h2 id = "whosturn">Turn: X</h2>
-
+      <div id = "style-me">
+      <table id = "center-me">
+        <tr>
+          <td id = "td1"> X Score: <div id="x-score">0</div> </td>
+          <td>     </td>
+          <td id = "td2"> O Score: <div id="o-score">0</div> </td>
+        </tr>
+      </table>
+    </div>
+      
       <div class="container wrap" id="board">
         <div class="square"></div>
         <div class="square"></div>
@@ -37,17 +46,6 @@
       </div>
 
       <div id="reset-button">Play Again!</div>
-    </div>
-
-    <div id = "style-me">
-      <table id = "center-me">
-        <tr>
-          <td id = "td1"> X Score: <div id="x-score">0</div> </td>
-          <br>
-          <td>     </td>
-          <td id = "td2"> O Score: <div id="o-score">0</div> </td>
-        </tr>
-      </table>
     </div>
 
   </body>
