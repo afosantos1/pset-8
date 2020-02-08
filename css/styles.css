@@ -1,17 +1,11 @@
-* {
-  background-color: lightgreen;
-  color: black;
-  cursor: pointer;
-}
-
 body {
   text-align: center;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Roboto", monospace;
 }
 
 h1 {
   margin: 0 auto;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Major Mono Display", monospace;
   font-size: 48px;
   margin: 2%;
 }
@@ -50,7 +44,7 @@ h2 {
 }
 
 .square:hover {
-  background-color: green;
+  background-color: mediumslateblue;
   cursor: pointer;
 }
 
@@ -66,14 +60,14 @@ h2 {
 }
 
 #reset-button:hover {
-  background-color: green;
+  background-color: mediumslateblue;
   color: white;
   cursor: pointer;
 }
 
 #xfirst_bttn {
-border: 3px solid green;
-background-color: lightgreen;
+border: 3px solid violet;
+background-color: white;
 border-radius: 25px;
 width: 100px;
 height: 50px;
@@ -81,8 +75,8 @@ font-size: 20px;
 }
 
 #ofirst_bttn {
-  border: 3px solid green;
-  background-color: lightgreen;
+  border: 3px solid dodgerblue;
+  background-color: white;
   border-radius: 25px;
   width: 100px;
   height: 50px;
