@@ -1,7 +1,5 @@
 * {
   background-color: lightgreen;
-  color: black;
-  cursor: pointer;
 }
 
 body {
@@ -20,6 +18,16 @@ h2 {
   font-size: 36px;
   font-weight: lighter;
   margin: 2%;
+}
+
+.wins {
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  user-select: none;
+  width: 150px;
+  color: green;
 }
 
 .container {
@@ -54,8 +62,12 @@ h2 {
   cursor: pointer;
 }
 
+#table {
+  margin-left: auto;
+  margin-right: auto;
+}
 #reset-button {
-  background-color: white;
+  background-color: green;
   border: 1px solid black;
   color: black;
   font-size: 21px;
@@ -66,42 +78,55 @@ h2 {
 }
 
 #reset-button:hover {
-  background-color: green;
+  background-color: black;
   color: white;
   cursor: pointer;
 }
 
-#xfirst_bttn {
-border: 3px solid green;
-background-color: lightgreen;
-border-radius: 25px;
-width: 100px;
-height: 50px;
-font-size: 20px;
+#table2 {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#ofirst_bttn {
-  border: 3px solid green;
-  background-color: lightgreen;
-  border-radius: 25px;
-  width: 100px;
-  height: 50px;
+#switch:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+#switch {
+  border: 1px solid rgba(0, 0, 0, 0.75);
   font-size: 20px;
+  font-weight: bold;
+  height: 50px;
+  line-height: 50px;
+  user-select: none;
+  width: 300px;
 }
 
-#style-me {
-  font-size: 30px;
-}
-
-#center-me {
+#reset-scoreboard {
+  background-color: green;
+  border: 1px solid black;
+  color: black;
+  font-size: 21px;
+  line-height: 55px;
+  margin: 0%;
   text-align: center;
-  display: inline-block;
+  width: 456px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#td1 {
-  padding: 15px;
+#reset-scoreboard:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
 }
 
-#td2 {
-  padding: 15px;
+td {
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  user-select: none;
+  width: 150px;
 }
